@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ibrahim | Web Developer</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    :root {
+      --bg: #070b14;
+      --card: #101827;
+      --text: #ffffff;
+      --muted: #9ca3af;
+      --primary: #00e5ff;
+      --secondary: #7c3aed;
+      --border: rgba(255,255,255,0.1);
+    }
+
+    body.light {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #667085;
+      --border: rgba(0,0,0,0.1);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.3s;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(7,11,20,0.75);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .theme-btn {
+      border: none;
+      background: var(--card);
+      color: var(--text);
+      padding: 10px 13px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 8% 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 650px;
+    }
+
+    .hero h3 {
+      color: var(--primary);
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 7vw, 80px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .primary-btn {
+      background: var(--primary);
+      color: #000;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,229,255,0.25);
+    }
+
+    .secondary-btn {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .secondary-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* CODE CARD */
+
+    .code-card {
+      width: 420px;
+      max-width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+      transform: rotate(2deg);
+      animation: floating 4s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%,100% {
+        transform: translateY(0) rotate(2deg);
+      }
+
+      50% {
+        transform: translateY(-15px) rotate(2deg);
+      }
+    }
+
+    .dots {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 20px;
+    }
+
+    .dots i {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .code {
+      color: #9cdcfe;
+      line-height: 1.8;
+      font-family: monospace;
+      font-size: 14px;
+    }
+
+    .keyword {
+      color: #c586c0;
+    }
+
+    .string {
+      color: #ce9178;
+    }
+
+    /* GENERAL */
+
+    section {
+      padding: 100px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    /* ABOUT */
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 15px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 25px 10px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat h3 {
+      color: var(--primary);
+      font-size: 30px;
+    }
+
+    .stat p {
+      color: var(--muted);
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    /* SKILLS */
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+
+    .skill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 30px;
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+
+    .skill:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+    }
+
+    .skill-icon {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    .skill h3 {
+      margin-bottom: 10px;
+    }
+
+    .skill p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* PROJECTS */
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 25px;
+    }
+
+    .project {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .project:hover {
+      transform: translateY(-10px);
+    }
+
+    .project-img {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 55px;
+      background: linear-gradient(135deg, #111827, #1e293b);
+    }
+
+    .project-content {
+      padding: 25px;
+    }
+
+    .project-content h3 {
+      margin-bottom: 10px;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: rgba(0,229,255,0.1);
+      color: var(--primary);
+      padding: 6px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      max-width: 750px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .contact p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 15px 20px;
+      border-radius: 8px;
+    }
+
+    .contact-item a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      color: var(--primary);
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    /* MOBILE */
+
+    @media(max-width: 850px) {
+
+      nav {
+        padding: 18px 5%;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero {
+        padding: 130px 5% 70px;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .skills,
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 70px 5%;
+      }
+
+      .stats {
+        margin-top: 20px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="logo">
+      Ibrahim<span>.</span>
+    </div>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button class="theme-btn" onclick="toggleTheme()">
+      ☀️
+    </button>
+
+  </nav>
+
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <h3>Hello, I'm</h3>
+
+      <h1>
+        Ibrahim <span>Developer.</span>
+      </h1>
+
+      <p>
+        I build modern, responsive and interactive websites
+        that help businesses and creators stand out online.
+      </p>
+
+      <div class="buttons">
+
+        <a href="#projects" class="btn primary-btn">
+          View My Work
+        </a>
+
+        <a href="#contact" class="btn secondary-btn">
+          Contact Me
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="code-card">
+
+      <div class="dots">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+
+      <div class="code">
+
+        <span class="keyword">const</span> developer = {<br>
+
+        &nbsp;&nbsp;name:
+        <span class="string">"Ibrahim"</span>,<br>
+
+        &nbsp;&nbsp;role:
+        <span class="string">"Web Developer"</span>,<br>
+
+        &nbsp;&nbsp;skills: [<br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="string">"HTML"</span>,<br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="string">"CSS"</span>,<br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="string">"JavaScript"</span><br>
+
+        &nbsp;&nbsp;],<br>
+
+        &nbsp;&nbsp;available:
+        <span class="keyword">true</span><br>
+
+        };
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="section-title">
+
+      <h2>About Me</h2>
+
+      <p>
+        Turning ideas into digital experiences.
+      </p>
+
+    </div>
+
+
+    <div class="about">
+
+      <div class="about-text">
+
+        <h2>
+          I love building things for the web.
+        </h2>
+
+        <p>
+          I'm Ibrahim, a web developer focused on creating
+          clean, responsive and user-friendly websites.
+        </p>
+
+        <p>
+          I enjoy turning designs and ideas into functional
+          websites using modern web technologies.
+        </p>
+
+      </div>
+
+
+      <div class="stats">
+
+        <div class="stat">
+          <h3>10+</h3>
+          <p>Projects</p>
+        </div>
+
+        <div class="stat">
+          <h3>3+</h3>
+          <p>Technologies</p>
+        </div>
+
+        <div class="stat">
+          <h3>100%</h3>
+          <p>Passion</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SKILLS -->
+
+  <section id="skills">
+
+    <div class="section-title">
+
+      <h2>My Skills</h2>
+
+      <p>
+        Technologies I use to create websites.
+      </p>
+
+    </div>
+
+
+    <div class="skills">
+
+      <div class="skill">
+
+        <div class="skill-icon">🌐</div>
+
+        <h3>HTML</h3>
+
+        <p>
+          Creating semantic and well-structured web pages.
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <div class="skill-icon">🎨</div>
+
+        <h3>CSS</h3>
+
+        <p>
+          Designing responsive and visually attractive interfaces.
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <div class="skill-icon">⚡</div>
+
+        <h3>JavaScript</h3>
+
+        <p>
+          Adding interactivity and dynamic functionality to websites.
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <div class="skill-icon">📱</div>
+
+        <h3>Responsive Design</h3>
+
+        <p>
+          Making websites work beautifully on phones,
+          tablets and computers.
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <div class="skill-icon">🔧</div>
+
+        <h3>Git</h3>
+
+        <p>
+          Managing code and tracking changes efficiently.
+        </p>
+
+      </div>
+
+
+      <div class="skill">
+
+        <div class="skill-icon">🚀</div>
+
+        <h3>Performance</h3>
+
+        <p>
+          Building websites that load quickly and provide
+          a smooth experience.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+
+    <div class="section-title">
+
+      <h2>My Projects</h2>
+
+      <p>
+        A few things I've built.
+      </p>
+
+    </div>
+
+
+    <div class="projects">
+
+      <div class="project">
+
+        <div class="project-img">
+          🛒
+        </div>
+
+        <div class="project-content">
+
+          <h3>E-Commerce Website</h3>
+
+          <p>
+            A modern shopping website with a responsive
+            interface and interactive product sections.
+          </p>
+
+          <div class="tags">
+
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="project">
+
+        <div class="project-img">
+          🎮
+        </div>
+
+        <div class="project-content">
+
+          <h3>Gaming Website</h3>
+
+          <p>
+            A gaming-focused landing page featuring
+            animations and interactive elements.
+          </p>
+
+          <div class="tags">
+
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="project">
+
+        <div class="project-img">
+          💼
+        </div>
+
+        <div class="project-content">
+
+          <h3>Business Website</h3>
+
+          <p>
+            A professional website designed to help a
+            business present its services online.
+          </p>
+
+          <div class="tags">
+
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <div class="contact">
+
+      <div class="section-title">
+
+        <h2>Let's Work Together</h2>
+
+      </div>
+
+      <p>
+        Have a website idea or project?
+        I'd love to hear about it and help bring it to life.
+      </p>
+
+
+      <div class="contact-info">
+
+        <div class="contact-item">
+
+          📧
+
+          <a href="mailto:ramonibrahim874@gmail.com">
+            ramonibrahim874@gmail.com
+          </a>
+
+        </div>
+
+
+        <div class="contact-item">
+
+          📱
+
+          <a href="tel:07086463304">
+            070 8646 3304
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <br>
+
+
+      <a
+        href="mailto:ramonibrahim874@gmail.com"
+        class="btn primary-btn"
+      >
+        Send Me an Email
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 Ibrahim Developer.
+    Built with HTML, CSS & JavaScript.
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    function toggleTheme() {
+
+      document.body.classList.toggle("light");
+
+      const button =
+        document.querySelector(".theme-btn");
+
+      if (document.body.classList.contains("light")) {
+
+        button.innerHTML = "🌙";
+
+      } else {
+
+        button.innerHTML = "☀️";
+
+      }
+
+    }
+
+
+    // Reveal animation when scrolling
+
+    const elements =
+      document.querySelectorAll(
+        ".skill, .project, .stat"
+      );
+
+
+    const observer =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.style.opacity = "1";
+
+              entry.target.style.transform =
+                "translateY(0)";
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.15
+        }
+      );
+
+
+    elements.forEach(element => {
+
+      element.style.opacity = "0";
+
+      element.style.transform =
+        "translateY(30px)";
+
+      element.style.transition = "0.7s";
+
+      observer.observe(element);
+
+    });
+
+  </script>
+
+</body>
+</html>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
